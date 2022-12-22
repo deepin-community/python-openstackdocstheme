@@ -1,0 +1,46 @@
+Description: Fix Sphinx built-in search
+ Since openstackdocs uses a custom layout.html page that does not
+ inherit from basic/layout.html, we need to copy some JS bits from there
+ to make the built-in search work.
+ .
+ Also, do not include jQuery twice, or we will overwrite changes to the
+ jQuery object made by doctools.js.
+Author: Geoffrey Thomas <geofft@twosigma.com>
+Forwarded: no
+
+Index: python-openstackdocstheme/openstackdocstheme/theme/openstackdocs/layout.html
+===================================================================
+--- python-openstackdocstheme.orig/openstackdocstheme/theme/openstackdocs/layout.html
++++ python-openstackdocstheme/openstackdocstheme/theme/openstackdocs/layout.html
+@@ -29,6 +29,20 @@ ga('send', 'pageview');
+ </script>
+ <!-- End Google Analytics -->
+ {% endif %}
++    <script type="text/javascript">
++      var DOCUMENTATION_OPTIONS = {
++        URL_ROOT:    '{{ url_root }}',
++        VERSION:     '{{ release|e }}',
++        COLLAPSE_INDEX: false,
++        FILE_SUFFIX: '{{ '' if no_search_suffix else file_suffix }}',
++        HAS_SOURCE:  {{ has_source|lower }},
++        SOURCELINK_SUFFIX: '{{ sourcelink_suffix }}'
++      };
++    </script>
++    {%- for scriptfile in script_files %}
++    <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
++    {%- endfor %}
++{%- block extrahead %} {% endblock %}
+   </head>
+   <body>
+ {% include 'header.html' %}
+Index: python-openstackdocstheme/openstackdocstheme/theme/openstackdocs/script_footer.html
+===================================================================
+--- python-openstackdocstheme.orig/openstackdocstheme/theme/openstackdocs/script_footer.html
++++ python-openstackdocstheme/openstackdocstheme/theme/openstackdocs/script_footer.html
+@@ -1,6 +1,3 @@
+-<!-- jQuery -->
+-<script type="text/javascript" src="{{pathto('_static/js/jquery-3.2.1.min.js', 1)}}"></script>
+-
+ <!-- Bootstrap JavaScript -->
+ <script type="text/javascript" src="{{pathto('_static/js/bootstrap.min.js', 1)}}"></script>
+ 

@@ -1,0 +1,35 @@
+Source: python-openstackdocstheme
+Section: python
+Priority: optional
+Maintainer: Debian OpenStack <team+openstack@tracker.debian.org>
+Uploaders:
+ Thomas Goirand <zigo@debian.org>,
+ David Della Vecchia <ddv@canonical.com>,
+Build-Depends:
+ debhelper (>= 10),
+ dh-python,
+ openstack-pkg-tools,
+ python3-sphinx,
+ python3-all,
+ python3-pbr,
+ python3-setuptools,
+Build-Depends-Indep:
+ python3-requests,
+Standards-Version: 4.3.0
+Vcs-Browser: https://salsa.debian.org/openstack-team/libs/python-openstackdocstheme
+Vcs-Git: https://salsa.debian.org/openstack-team/libs/python-openstackdocstheme.git
+Homepage: http://docs.openstack.org/
+
+Package: python3-openstackdocstheme
+Architecture: all
+Depends:
+ libjs-bootstrap,
+ python3-pbr,
+ python3-sphinx (>= 1.6.2),
+ ${misc:Depends},
+ ${python3:Depends},
+Description: extension support for Sphin OpenStack doc - Python 3.x
+ Theme and extension support for Sphinx documentation that is published to
+ docs.openstack.org. Intended for use by OpenStack projects.
+ .
+ This package contains the Python 3.x module.

@@ -1,0 +1,48 @@
+From: Geoffrey Thomas <geofft@twosigma.com>
+Date: Wed, 6 Sep 2017 16:09:33 -0400
+Subject: Revert "Fix search.html page script errors"
+Last-Update: 2018-02-10
+
+This reverts commit d87aaca30f64502b3dd13cc1ddf46beec90fc015.
+
+Conflicts:
+        doc/source/index.rst
+        openstackdocstheme/theme/openstackdocs/js.html
+---
+ openstackdocstheme/theme/openstackdocs/search.html | 42 ----------------------
+ .../theme/openstackdocs/static/css/combined.css    |  7 ++--
+ 2 files changed, 5 insertions(+), 44 deletions(-)
+ delete mode 100644 openstackdocstheme/theme/openstackdocs/search.html
+
+Index: python-openstackdocstheme/openstackdocstheme/theme/openstackdocs/static/css/combined.css
+===================================================================
+--- python-openstackdocstheme.orig/openstackdocstheme/theme/openstackdocs/static/css/combined.css
++++ python-openstackdocstheme/openstackdocstheme/theme/openstackdocs/static/css/combined.css
+@@ -787,6 +787,9 @@ input.gsc-search-button, input.gsc-searc
+   background: #C43422 !important;
+   border: none !important; }
+ 
++table.gsc-search-box td {
++  padding: 0px !important; }
++
+ .gsc-input-box {
+   border-color: #D3E9EF !important; }
+ 
+@@ -1037,7 +1040,7 @@ input#gsc-i-id2.gsc-input {
+   height: 30px !important; }
+ 
+ table.gsc-search-box {
+-  width: 90% !important; }
++  margin-bottom: 0; }
+ 
+ .header-search, .gsc-input-box {
+   border: 2px solid #dae5ee !important;
+@@ -1117,7 +1120,7 @@ table#gs_id50.gstl_50 {
+ .close-search {
+   position: absolute;
+   top: 20px;
+-  right: 12% !important;
++  right: 5px;
+   color: #dae5ee;
+   z-index: 1001;
+   font-size: 16px; }
