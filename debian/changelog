@@ -1,3 +1,19 @@
+python-openstackdocstheme (3.2.0-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Running wrap-and-sort -bast.
+  * d/copyright: Bump my copyright year.
+  * Use debhelper-compat instead of debian/compat.
+  * Bump Standards-Version to 4.4.1.
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Rebased/remove-now-useless patches.
+  * Use --in-tmp when calling pkgos-dh_auto_install.
+  * Use symlinks to system fonts instead of embedding them.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 29 Aug 2023 17:20:50 +0200
+
 python-openstackdocstheme (1.20.0-5) unstable; urgency=medium
 
   * Uploading to unstable.

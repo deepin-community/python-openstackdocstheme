@@ -12,5 +12,20 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from .ext import setup  # noqa
+from . import ext
+from . import page_context
 from .paths import *  # noqa
+from .version import version_info
+
+
+__version__ = version_info.version_string()
+
+
+def setup(app):
+    ext.setup(app)
+    page_context.setup(app)
+    return {
+        'parallel_read_safe': True,
+        'parallel_write_safe': True,
+        'version': __version__,
+    }

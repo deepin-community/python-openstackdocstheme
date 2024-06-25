@@ -1,2 +1,5 @@
-usr/share/javascript/bootstrap/css/bootstrap.min.css usr/lib/python3/dist-packages/openstackdocstheme/theme/openstackdocs/static/css/bootstrap.min.css
-usr/share/javascript/bootstrap/js/bootstrap.min.js usr/lib/python3/dist-packages/openstackdocstheme/theme/openstackdocs/static/js/bootstrap.min.js
+/usr/share/fonts/opentype/font-awesome/FontAwesome.otf /usr/lib/python3/dist-packages/openstackdocstheme/theme/openstackdocs/static/fonts/FontAwesome.otf
+/usr/share/fonts/truetype/font-awesome/fontawesome-webfont.ttf /usr/lib/python3/dist-packages/openstackdocstheme/theme/openstackdocs/static/fonts/fontawesome-webfont.ttf
+/usr/share/fonts/truetype/glyphicons/glyphicons-halflings-regular.ttf /usr/lib/python3/dist-packages/openstackdocstheme/theme/openstackdocs/static/fonts/glyphicons-halflings-regular.ttf
+/usr/share/javascript/bootstrap/css/bootstrap.min.css /usr/lib/python3/dist-packages/openstackdocstheme/theme/openstackdocs/static/css/bootstrap.min.css
+/usr/share/javascript/bootstrap/js/bootstrap.min.js /usr/lib/python3/dist-packages/openstackdocstheme/theme/openstackdocs/static/js/bootstrap.min.js

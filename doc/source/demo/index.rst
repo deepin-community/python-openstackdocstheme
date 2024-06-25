@@ -64,7 +64,7 @@ Here's another example that's python code:
 
     def builder_inited(app):
         theme_dir = os.path.join(os.path.dirname(__file__), 'theme')
-        app.info('Using openstack theme from %s' % theme_dir)
+        LOG.info('Using openstack theme from %s' % theme_dir)
         # Insert our theme directory at the front of the search path and
         # force the theme setting to use the one in the package. This is
         # done here, instead of in setup(), because conf.py is read after
@@ -79,7 +79,8 @@ Here's another example that's python code:
         if hasattr(app.builder, 'init_templates'):
             app.builder.init_templates()
 
-Here's the same example but with ..code-block: ini to test the pygments lexer:
+Here's the same example but with ``..code-block: ini`` to test the pygments
+lexer:
 
 .. code-block:: ini
 
@@ -90,6 +91,38 @@ Here's the same example but with ..code-block: ini to test the pygments lexer:
   vncserver_listen = 0.0.0.0
   vncserver_proxyclient_address = 10.0.0.31
   novncproxy_base_url = http://controller:6080/vnc_auto.html
+
+Tables
+~~~~~~
+
+Here's a sample table:
+
+.. list-table:: OpenStack projects
+   :header-rows: 1
+   :widths: 10, 10, 60
+
+   * - Name
+     - Role
+     - Description
+   * - Nova
+     - Compute
+     - To implement services and associated libraries to provide massively
+       scalable, on demand, self service access to compute resources, including
+       bare metal, virtual machines, and containers.
+   * - Neutron
+     - Networking
+     - OpenStack Neutron is an SDN networking project focused on delivering
+       networking-as-a-service (NaaS) in virtual compute environments.
+   * - Swift
+     - Object store
+     - Swift is a highly available, distributed, eventually consistent
+       object/blob store. Organizations can use Swift to store lots of data
+       efficiently, safely, and cheaply. It's built for scale and optimized for
+       durability, availability, and concurrency across the entire data set.
+       Swift is ideal for storing unstructured data that can grow without bound.
+   * - ...
+     - ...
+     - ...
 
 Notices
 ~~~~~~~

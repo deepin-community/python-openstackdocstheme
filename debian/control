@@ -6,16 +6,16 @@ Uploaders:
  Thomas Goirand <zigo@debian.org>,
  David Della Vecchia <ddv@canonical.com>,
 Build-Depends:
- debhelper (>= 10),
+ debhelper-compat (= 10),
  dh-python,
  openstack-pkg-tools,
- python3-sphinx,
  python3-all,
  python3-pbr,
  python3-setuptools,
+ python3-sphinx,
 Build-Depends-Indep:
  python3-requests,
-Standards-Version: 4.3.0
+Standards-Version: 4.4.1
 Vcs-Browser: https://salsa.debian.org/openstack-team/libs/python-openstackdocstheme
 Vcs-Git: https://salsa.debian.org/openstack-team/libs/python-openstackdocstheme.git
 Homepage: http://docs.openstack.org/
@@ -23,6 +23,8 @@ Homepage: http://docs.openstack.org/
 Package: python3-openstackdocstheme
 Architecture: all
 Depends:
+ fonts-font-awesome,
+ fonts-glyphicons-halflings,
  libjs-bootstrap,
  python3-pbr,
  python3-sphinx (>= 1.6.2),

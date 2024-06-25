@@ -1,14 +1,20 @@
-===========================================
- OpenStack docs.openstack.org Sphinx theme
-===========================================
+=========================
+ OpenStack Sphinx themes
+=========================
 
-*openstackdocstheme* is a theme and extension support for Sphinx documentation
-that is published to docs.openstack.org and developer.openstack.org.
+*openstackdocstheme* is a Sphinx documentation extension that includes
+theme support for Open Infrastructure Foundation projects.
 
-It is intended for use by OpenStack `projects governed by the Technical
-Committee`_.
+The *openstackdocs* theme is used for documentation that is published
+to docs.openstack.org and developer.openstack.org. It is intended for
+use by OpenStack `projects governed by the Technical Committee`_.
+
+The *starlingxdocs* theme is used for documentation that is published
+to docs.starlingx.io. It is intended for use by StarlingX
+`projects governed by the Technical Steering Committee`_.
 
 .. _`projects governed by the Technical Committee`: https://governance.openstack.org/reference/projects/index.html
+.. _`projects governed by the Technical Steering Committee`: https://docs.starlingx.io/governance/reference/projects/index.html
 
 Using the theme
 ---------------
@@ -43,47 +49,99 @@ Using the theme
 
      html_theme = 'openstackdocs'
 
-#. Set the options to link to the git repository and bug tracker.
+#. Set the options to link to the git repository on ``https://opendev.org`` and
+   bug tracker.
 
-   ``repository_name``
+   ``openstackdocs_repo_name``
        The prefix and repo name. For example,
        ``'openstack/python-glanceclient'``.
 
-   ``bug_project``
-       The project name or ID. For launchpad, it's a string like
-       ``python-glanceclient``. If your project uses
-       ``storyboard.openstack.org``, use the project number instead like
-       ``901``. If unspecified, the "Report a bug" links are not shown.
+   ``openstackdocs_use_storyboard``
+       Set to ``True`` if using StoryBoard.
 
-   ``bug_tag``
-      Launchpad bug tag. If unspecified, no tag is set.  The default is empty.
+       .. note::
+
+          If using StoryBoard, do not set ``bug_project`` and ``bug_tag``
+          options.
+
+   ``openstackdocs_bug_project``
+       The project name or ID. For launchpad, it's a string like
+       ``python-glanceclient``. If unspecified, the "Report a bug"
+       links are not shown. This option can be removed if using StoryBoard.
+
+   ``openstackdocs_bug_tag``
+      Launchpad bug tag. If unspecified, no tag is set. The default is empty.
+      This option can be removed if using StoryBoard.
 
    One example for a project using launchpad::
 
       # openstackdocstheme options
-      repository_name = 'openstack/python-glanceclient'
-      bug_project = 'python-glanceclient'
-      bug_tag = ''
+      openstackdocs_repo_name = 'openstack/python-glanceclient'
+      openstackdocs_bug_project = 'python-glanceclient'
+      openstackdocs_bug_tag = ''
 
-   One example for a project using storyboard::
+   One example for a project using StoryBoard::
 
       # openstackdocstheme options
-      repository_name = 'openstack-infra/infra-manual'
-      bug_project = '721'
-      bug_tag = ''
+      openstackdocs_repo_name = 'openstack/infra-manual'
+      openstackdocs_use_storyboard = true
 
 #. Remove the options that will be automatically configured by the theme.
 
    - ``project``
    - ``html_last_updated_fmt``
-   - ``latex_engine``
-   - ``latex_elements``
 
-   In addition, if your documentation is versioned, you should remove the
-   options related to versioning.
+#. Configure version-related options.
+
+   For everything except documentation in the ``api-guide``, ``api-ref``, and
+   ``releasenotes`` paths, the theme will automatically set the version of your
+   documentation. This behavior can be manually configured by setting the
+   ``openstackdocs_auto_version`` option to either ``True`` or ``False``.
+
+   If your documentation is auto-versioned, you should remove the options
+   related to versioning as they will be overridden.
 
    - ``version``
    - ``release``
+
+#. (Optional) Manually configure the project name.
+
+   The theme will automatically set the project name used in your
+   documentation. You can disable this behavior by setting the
+   ``openstackdocs_auto_name`` option to ``false`` and configuring the
+   ``project`` option to the name you wish to use.
+
+#. (Optional) Link to the PDF file.
+
+   If you build a PDF file as well, the theme can create a link to it.
+   Set ``openstack_pdf_link`` to ``True`` to generate the link.
+   The file is expected to be named ``doc-<shortname>.pdf`` and placed
+   in the top-level directory where ``<shortname>`` is the
+   ``openstackdocs_repo_name``. For example with::
+
+     openstackdocs_repo_name = "openstack/python-glanceclient"
+
+   the shortname is ``python-glanceclient`` and the filename will be
+   ``doc-python-glanceclient.pdf``. Use the variable
+   ``openstackdocs_pdf_filename`` to override the generated file name.
+
+.. versionchanged:: 2.2.0
+
+   The config options ``openstack_pdf_link`` and
+   ``openstackdocs_pdf_filename`` were introduced.
+
+.. versionchanged:: 2.1.0
+
+   The ``repository_name``, ``bug_project``, ``bug_tag`` and ``use_storyboard``
+   config options were renamed to ``openstackdocs_repo_name``,
+   ``openstackdocs_bug_project``, ``openstackdocs_bug_tag`` and
+   ``openstackdocs_use_storyboard``, respectively. Aliases are provided but
+   these will be removed in a future release.
+
+.. versionchanged:: 2.1.0
+
+   The ``openstackdocs_auto_version`` and ``openstackdocs_auto_name`` config
+   options were added.
 
 .. versionchanged:: 1.20
 
@@ -140,6 +198,37 @@ with documentation available. By default it is set to ``None``::
     document with internal versioning.
 
 
+A badge pointing out the support status of a document is shown now
+for repositories that have ``stable/`` branches. The badge is not
+displayed for api-ref, api-guide and releasenotes documents. It
+can be disabled with the ``display_badge`` html theme option::
+
+        html_theme_options = {
+        # ...
+        "display_badge": False,
+        # ...
+    }
+
+The TOC on the left contains a global section (to navigate between pages)
+and a local section (showing page contents). If the TOC is displayed in the
+text, you might want to disable the global section of the TOC::
+
+    html_theme_options = {
+        # ...
+        "display_global_toc_section": False,
+        # ...
+    }
+
+If you are using this theme for something other than docs.openstack.org,
+you can customize the root title ("OpenStack Docs") that appears in the
+page title and the left arrow tooltip::
+
+    html_theme_options = {
+        # ...
+        "root_title": "OpenStack Governance",
+        # ...
+    }
+
 External Link Helper
 --------------------
 
@@ -159,6 +248,11 @@ Then in the documentation source, link to a target using syntax like:
 .. code-block:: rst
 
    :horizon-doc:`Launching Instances with Horizon <user/launch-instances.html>`
+
+.. note::
+
+   Do not use this feature to reference projects that have a different branching
+   policy, for example, only have a master branch.
 
 
 Demonstration example

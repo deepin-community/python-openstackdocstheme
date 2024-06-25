@@ -13,4 +13,15 @@ override_dh_auto_build:
 	echo "Do nothing..."
 
 override_dh_auto_install:
-	pkgos-dh_auto_install --no-py2
+	pkgos-dh_auto_install --no-py2 --in-tmp
+	mv $(CURDIR)/debian/tmp/usr/bin/docstheme-build-translated.sh $(CURDIR)/debian/tmp/usr/bin/docstheme-build-translated
+	mv $(CURDIR)/debian/tmp/usr/bin/docstheme-lang-display-name.py $(CURDIR)/debian/tmp/usr/bin/docstheme-lang-display-name
+
+override_dh_link:
+	rm $(CURDIR)/debian/python3-openstackdocstheme/usr/lib/python3/dist-packages/openstackdocstheme/theme/openstackdocs/static/fonts/FontAwesome.otf
+	rm $(CURDIR)/debian/python3-openstackdocstheme/usr/lib/python3/dist-packages/openstackdocstheme/theme/openstackdocs/static/fonts/fontawesome-webfont.ttf
+	rm $(CURDIR)/debian/python3-openstackdocstheme/usr/lib/python3/dist-packages/openstackdocstheme/theme/openstackdocs/static/fonts/glyphicons-halflings-regular.ttf
+	dh_link
+
+override_dh_python3:
+	dh_python3 --shebang=/usr/bin/python3
