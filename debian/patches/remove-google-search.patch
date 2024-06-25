@@ -8,8 +8,8 @@ Index: python-openstackdocstheme/openstackdocstheme/theme/openstackdocs/script_s
 --- python-openstackdocstheme.orig/openstackdocstheme/theme/openstackdocs/script_search.html
 +++ python-openstackdocstheme/openstackdocstheme/theme/openstackdocs/script_search.html
 @@ -1,28 +1,3 @@
- <script src="http://www.google.com/jsapi" type="text/javascript"></script>
- <script type="text/javascript">
+ <script src="https://www.google.com/jsapi"></script>
+ <script>
 - //<![CDATA[
 -google.load('search', '1', {
 -    language: 'en'

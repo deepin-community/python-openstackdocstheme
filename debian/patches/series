@@ -1,7 +1,2 @@
 remove-google-search.patch
-Revert-Update-Site-Search.patch
-Revert-Fix-search.html-page-script-errors.patch
-fix-search.patch
-remove-top-menu.patch
-patch-out-external-references.patch
-remove-gce-blocks.patch
+remove-search.patch
